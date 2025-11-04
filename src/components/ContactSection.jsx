@@ -11,6 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export const ContactSection = () => {
   const { toast } = useToast();
@@ -32,17 +33,35 @@ export const ContactSection = () => {
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Get In <span className="text-primary"> Touch</span>
-        </h2>
-
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Have a project in mind or want to collaborate? Feel free to reach out.
+        <motion.h2
+                  initial={{ opacity: 0, y: -20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="text-3xl md:text-4xl font-bold mb-4 text-center"
+                > Get In <span className="text-primary"> Touch</span>
+                </motion.h2>
+        
+                <motion.p
+                  initial={{ opacity: 0, y: -20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto"
+                >
+                  Want to collaborate? Feel free to reach out.
           I'm always open to discussing new opportunities.
-        </p>
+                </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-8">
+          <motion.div
+                     
+                            initial={{ opacity: 0, x: -60 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.6 }}
+                            className="space-y-8">
+                          
             <h3 className="text-2xl font-semibold mb-6">
               {" "}
               Contact Information
@@ -79,17 +98,26 @@ export const ContactSection = () => {
             <div className="pt-8">
               <h4 className="font-medium mb-4"> Connect With Me</h4>
               <div className="flex space-x-4 justify-center">
-                <a href="#" target="_blank">
+                <a href="https://www.linkedin.com/in/jennifer-jay1/" target="_blank">
                   <Linkedin />
                 </a>
               </div>
             </div>
-          </div>
-
-          <div
+   
+          </motion.div>
+          <motion.div
+                     
+                            initial={{ opacity: 0, x: 60 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.6 }}
+                            className="bg-card p-8 rounded-lg shadow-xs"
+            onSubmit={handleSubmit}
+                          >
+          {/* <div
             className="bg-card p-8 rounded-lg shadow-xs"
             onSubmit={handleSubmit}
-          >
+          > */}
             <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
 
             <form className="space-y-6">
@@ -107,7 +135,7 @@ export const ContactSection = () => {
                   name="name"
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="Pedro Machado..."
+                  placeholder="John Doe..."
                 />
               </div>
 
@@ -157,7 +185,7 @@ export const ContactSection = () => {
                 <Send size={16} />
               </button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
