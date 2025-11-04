@@ -9,18 +9,18 @@ const projects = [
     description: "Implementing the software system requirements for an IoT-based smart occupancy monitoring solution. Developed the IoT communication layer enabling fixtures to transmit sensor data to the monitoring website via MQTT over AWS IoT Core.",
     image: "/projects/project1.png",
     tags: ["React", "TailwindCSS", "Supabase", "AWS IoT", "MQTT"],
-    demoUrl: "#",
-    githubUrl: "#",
+    buttonText: "",
+    buttonLink: "https://de-fellows.github.io/RexCoding/python/flask/html/2022/06/18/flask-media.html",
     bgColor: "#6366f1"
   },
   {
     id: 2,
-    title: "Flexio",
-    description: "Independently designed and developed a social media app dedicated to documenting and managing users' fitness journeys. Leveraged React Native and Expo for seamless cross-platform functionality.",
-    image: "/projects/project2.png",
-    tags: ["React Native", "Expo", "TypeScript", "Microservices"],
-    demoUrl: "#",
-    githubUrl: "#",
+    title: "PyGame Hackathon Project",
+    description: "Led a team to second place by developing an interactive, educational, multi-level program introducing kids to Python basics, inspired by the classic Snake Game. Created a user-friendly experience with interactive lessons and a reward system that unlocks new lessons to encourage continued learning.",
+    image: "/projects/project3.png",
+    tags: ["PyGame", "VS Code", "GitHub"],
+    buttonText: "",
+    buttonLink: "",
     bgColor: "#ec4899"
   },
   {
@@ -29,8 +29,8 @@ const projects = [
     description: "Developed a web service for exploring alternative religions, applying SOLID principles and object-oriented design patterns (Singleton, Strategy, Facade, Dependency Injection). Utilized MVC architecture and Agile Scrum methodology, delivering two iterations of the application with comprehensive testing (Ad Hoc, Unit, Integration, System).",
     image: "/projects/project3.png",
     tags: ["React", "Java", "MySQL", "RESTful APIs", "GitHub", "JUnit"],
-    demoUrl: "#",
-    githubUrl: "#",
+    buttonText: "",
+    buttonLink: "",
     bgColor: "#8b5cf6"
   },
   {
@@ -39,29 +39,39 @@ const projects = [
     description: "Developed a cloud-based obituary generator integrating the ChatGPT API for content creation, Amazon Polly for speech conversion, and Cloudinary for media storage. Secured API credentials using AWS Systems Manager Parameter Store and managed AWS resources with Terraform, including DynamoDB and Lambda for back-end-to-front-end communication.",
     image: "/projects/project3.png",
     tags: ["React", "Node.js", "Stripe"],
-    demoUrl: "#",
-    githubUrl: "#",
+    buttonText: "",
+    buttonLink: "",
     bgColor: "#6366f1"
   },
   {
     id: 5,
-    title: "E-commerce Platform",
-    description: "Full-featured e-commerce platform with user authentication and payment processing.",
+    title: "Operating Systems Scheduler Simulator",
+    description: "Developed a C++ program to process job sequences with a file-based input system. Implemented a job linked list data structure optimized with function pointers and applied multiple scheduling policies (FIFO, SJF, STCF, Round-Robin, Lottery). Provided UNIX command-line options for users to select policies and configure time slices.",
     image: "/projects/project3.png",
-    tags: ["ChatGPT API", "Amazon Polly", "Cloudinary", "AWS Systems Manager", "Terraform", "DynamoDB"],
-    demoUrl: "#",
-    githubUrl: "#",
+    tags: ["C++", "UNIX command line"],
+    buttonText: "",
+    buttonLink: "",
     bgColor: "#ec4899"
   },
     {
-    id: 5,
+    id: 6,
     title: "Embedded Timer Application",
-    description: "Developed a timer application on a 32-bit microcontroller using I/O interrupts, idle states, and clock switching functionalities.",
+    description: "Developed a configurable timer application on a PIC24F16K101 microcontroller using push buttons and I/O interrupts for user control; implemented UART communication to display real-time countdown data on Tera Term, and optimized power efficiency with idle states and clock switching.",
     image: "/projects/project3.png",
-    tags: ["MPLAB", "C", "Microcontroller"],
-    demoUrl: "#",
-    githubUrl: "#",
+    tags: ["MPLAB", "C", "Microcontroller","Terraform"],
+    buttonText: "",
+    buttonLink: "",
     bgColor: "#8b5cf6"
+  },{
+    id: 7,
+    title: "Flexio",
+    description: "Independently designed and developed a social media app dedicated to documenting and managing users' fitness journeys. Leveraged React Native and Expo for seamless cross-platform functionality.",
+    image: "/projects/project2.png",
+    tags: ["React Native", "Expo", "TypeScript", "Microservices"],
+    buttonText: "",
+    buttonLink: "",
+    bgColor: "#6366f1"
+
   },
 ];
 
@@ -166,7 +176,7 @@ export const ProjectsSection = () => {
               {projects.map((project, i) => (
                 <React.Fragment key={project.id}>
                   <div
-                    className="absolute top-1/2 left-1/2 w-[400px] h-[450px] -ml-[200px] -mt-[250px] rounded-2xl overflow-hidden transition-all duration-700 ease-in-out"
+                    className="absolute top-1/2 left-1/2 w-[400px] h-[400px] -ml-[200px] -mt-[250px] rounded-2xl overflow-hidden transition-all duration-700 ease-in-out"
                     style={{
                       background: project.bgColor,
                       boxShadow: `0 5px 20px ${project.bgColor}30`,
@@ -174,40 +184,37 @@ export const ProjectsSection = () => {
                       ...getStyles(i)
                     }}
                   >
-                    <div className="p-8 h-full flex flex-col text-white">
-                      <div className="flex-1 overflow-y-auto">
-                        <h3 className="text-2xl font-bold mb-4 text-white">{project.title}</h3>
-                        <p className="text-sm text-white/90 mb-6 leading-relaxed">
-                          {project.description}
-                        </p>
-                        <div className="flex flex-wrap gap-2 mb-6">
-                          {project.tags.map((tag, idx) => (
-                            <span
-                              key={idx}
-                              className="px-3 py-1 bg-white/20 text-white rounded-full text-xs font-medium"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="flex gap-4 mt-auto">
-                        <a
-                          href={project.demoUrl}
-                          className="flex-1 flex items-center justify-center gap-2 bg-white text-gray-900 py-3 px-4 rounded-lg font-semibold hover:bg-white/90 transition-all"
-                        >
-                          <ExternalLink size={18} />
-                          Demo
-                        </a>
-                        <a
-                          href={project.githubUrl}
-                          className="flex-1 flex items-center justify-center gap-2 bg-white/20 text-white py-3 px-4 rounded-lg font-semibold hover:bg-white/30 transition-all"
-                        >
-                          <Github size={18} />
-                          Code
-                        </a>
-                      </div>
-                    </div>
+                    
+                   
+                   <div className="p-8 h-full flex flex-col items-center justify-center text-white text-center">
+  <h3 className="text-2xl font-bold mb-4 text-white">{project.title}</h3>
+  <div className="flex flex-wrap gap-2 mb-6 justify-center">
+    {project.tags.map((tag, idx) => (
+      <span
+        key={idx}
+        className="px-3 py-1 bg-white/20 text-white rounded-full text-xs font-medium"
+      >
+        {tag}
+      </span>
+    ))}
+  </div>
+  <p className="text-sm text-white/90 mb-6 leading-relaxed max-w-xs">
+    {project.description}
+  </p>
+  {project.buttonText && (
+    <a
+      href={project.buttonLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex text-foreground/80 hover:text-primary transition-colors duration-300 text-sm font-medium items-center gap-2"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {project.buttonText}
+      <ExternalLink size={16} />
+    </a>
+  )}
+</div>
+
                   </div>
                   {/* Reflection */}
                   <div
