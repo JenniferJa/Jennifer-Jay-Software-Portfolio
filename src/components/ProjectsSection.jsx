@@ -2,76 +2,79 @@ import React, { useState } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react";
 import { motion } from "framer-motion";
 
+const cardColors = ["#6366f1", "#ec4899", "#8b5cf6"];
 const projects = [
   {
     id: 1,
-    title: "Smart Occupancy Monitoring System",
-    description: "Implementing the software system requirements for an IoT-based smart occupancy monitoring solution. Developed the IoT communication layer enabling fixtures to transmit sensor data to the monitoring website via MQTT over AWS IoT Core.",
-    image: "/projects/project1.png",
-    tags: ["React", "TailwindCSS", "Supabase", "AWS IoT", "MQTT"],
-    buttonText: "",
-    buttonLink: "https://de-fellows.github.io/RexCoding/python/flask/html/2022/06/18/flask-media.html",
-    bgColor: "#6366f1"
+    title: "Learn Python for Kids Hackathon Project",
+    description: "Led a team to second place by developing an interactive, educational, multi-level program introducing kids to Python basics, inspired by the classic Snake Game. Created a user-friendly experience with interactive lessons and a reward system that unlocks new lessons to encourage continued learning.",
+    image: "/projects/project3.png",
+    tags: ["Python","PyGame", "VS Code", "Git/GitHub"],
+    buttonText: "View DevPost",
+    buttonLink: "https://devpost.com/software/snake-learn-python-for-kids",
   },
   {
     id: 2,
-    title: "PyGame Hackathon Project",
-    description: "Led a team to second place by developing an interactive, educational, multi-level program introducing kids to Python basics, inspired by the classic Snake Game. Created a user-friendly experience with interactive lessons and a reward system that unlocks new lessons to encourage continued learning.",
+    title: "Efishant Tasking Hackathon Project",
+    description: "Co-created an educational to-do list application supporting neurodiverse children, integrating gamified progress incentives and accessibility features (speech-to-text & text-to-speech) to encourage focus and task completion.",
     image: "/projects/project3.png",
-    tags: ["PyGame", "VS Code", "GitHub"],
-    buttonText: "",
-    buttonLink: "",
-    bgColor: "#ec4899"
+    tags: ["Python","Tkinter", "VS Code", "Git/GitHub"],
+    buttonText: "View DevPost",
+    buttonLink: "https://devpost.com/software/efishant-tasking",
   },
+  
   {
     id: 3,
     title: "Divinity Full Stack",
     description: "Developed a web service for exploring alternative religions, applying SOLID principles and object-oriented design patterns (Singleton, Strategy, Facade, Dependency Injection). Utilized MVC architecture and Agile Scrum methodology, delivering two iterations of the application with comprehensive testing (Ad Hoc, Unit, Integration, System).",
     image: "/projects/project3.png",
-    tags: ["React", "Java", "MySQL", "RESTful APIs", "GitHub", "JUnit"],
-    buttonText: "",
-    buttonLink: "",
-    bgColor: "#8b5cf6"
+    tags: ["React", "Java", "MySQL", "RESTful APIs", "Git/GitHub", "JUnit"],
+    buttonText: "View GitHub Repo",
+    buttonLink: "https://github.com/jennijjjj/FrontEnd-SENG401",
   },
   {
     id: 4,
+    title: "Smart Occupancy Monitoring System",
+    description: "Implementing the software system requirements for an IoT-based smart occupancy monitoring solution. Developed the IoT communication layer enabling fixtures to transmit sensor data to the monitoring website via MQTT over AWS IoT Core.",
+    image: "/projects/project1.png",
+    tags: ["React", "TailwindCSS", "Supabase", "AWS IoT", "MQTT"],
+    buttonText: "",
+    buttonLink: "",
+  },
+  {
+    id: 5,
     title: "Obituary Generator",
     description: "Developed a cloud-based obituary generator integrating the ChatGPT API for content creation, Amazon Polly for speech conversion, and Cloudinary for media storage. Secured API credentials using AWS Systems Manager Parameter Store and managed AWS resources with Terraform, including DynamoDB and Lambda for back-end-to-front-end communication.",
     image: "/projects/project3.png",
     tags: ["React", "Node.js", "Stripe"],
     buttonText: "",
     buttonLink: "",
-    bgColor: "#6366f1"
   },
   {
-    id: 5,
+    id: 6,
     title: "Operating Systems Scheduler Simulator",
     description: "Developed a C++ program to process job sequences with a file-based input system. Implemented a job linked list data structure optimized with function pointers and applied multiple scheduling policies (FIFO, SJF, STCF, Round-Robin, Lottery). Provided UNIX command-line options for users to select policies and configure time slices.",
     image: "/projects/project3.png",
     tags: ["C++", "UNIX command line"],
     buttonText: "",
     buttonLink: "",
-    bgColor: "#ec4899"
   },
     {
-    id: 6,
+    id: 7,
     title: "Embedded Timer Application",
     description: "Developed a configurable timer application on a PIC24F16K101 microcontroller using push buttons and I/O interrupts for user control; implemented UART communication to display real-time countdown data on Tera Term, and optimized power efficiency with idle states and clock switching.",
     image: "/projects/project3.png",
     tags: ["MPLAB", "C", "Microcontroller","Terraform"],
     buttonText: "",
     buttonLink: "",
-    bgColor: "#8b5cf6"
   },{
-    id: 7,
+    id: 8,
     title: "Flexio",
     description: "Independently designed and developed a social media app dedicated to documenting and managing users' fitness journeys. Leveraged React Native and Expo for seamless cross-platform functionality.",
     image: "/projects/project2.png",
     tags: ["React Native", "Expo", "TypeScript", "Microservices"],
     buttonText: "",
     buttonLink: "",
-    bgColor: "#6366f1"
-
   },
 ];
 
@@ -178,8 +181,8 @@ export const ProjectsSection = () => {
                   <div
                     className="absolute top-1/2 left-1/2 w-[400px] h-[400px] -ml-[200px] -mt-[250px] rounded-2xl overflow-hidden transition-all duration-700 ease-in-out"
                     style={{
-                      background: project.bgColor,
-                      boxShadow: `0 5px 20px ${project.bgColor}30`,
+                      background: cardColors[i % cardColors.length],
+                      boxShadow: `0 5px 20px ${cardColors[i % cardColors.length]}30`,
                       transformStyle: "preserve-3d",
                       ...getStyles(i)
                     }}
@@ -268,107 +271,3 @@ export const ProjectsSection = () => {
     </section>
   );
 }
-
-//   return (
-//     <section className="py-24 px-4 relative">
-//       <div className="container mx-auto max-w-5xl">
-//         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-//           Featured <span className="text-primary">Projects</span>
-//         </h2>
-
-//         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-//           These projects showcase my hands-on experience and passion for learning and building software.
-//         </p>
-
-//         {/* Swiper Carousel */}
-//         <Swiper
-//           modules={[Navigation, Autoplay]}
-//           spaceBetween={30}
-//           slidesPerView={1.2}
-//           breakpoints={{
-//             640: { slidesPerView: 1.2 },
-//             768: { slidesPerView: 1.5 },
-//             1024: { slidesPerView: 2.2 },
-//             1280: { slidesPerView: 2.5 },
-//           }}
-//           navigation={{
-//             prevEl: ".prev-btn",
-//             nextEl: ".next-btn",
-//           }}
-//           autoplay={{
-//             delay: 0,
-//             disableOnInteraction: true,
-//           }}
-//           className="cursor-grab"
-//         >
-//           {projects.map((project) => (
-//             <SwiperSlide key={project.id}>
-//               <div className="bg-card rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
-//                 <div className="h-56 overflow-hidden">
-//                   <img
-//                     src={project.image}
-//                     alt={project.title}
-//                     className="w-full h-full object-cover"
-//                   />
-//                 </div>
-//                 <div className="p-6">
-//                   <div className="flex flex-wrap gap-2 mb-4">
-//                     {project.tags.map((tag) => (
-//                       <span
-//                         key={tag}
-//                         className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground"
-//                       >
-//                         {tag}
-//                       </span>
-//                     ))}
-//                   </div>
-//                   <h3 className="text-xl font-semibold mb-1">{project.title}</h3>
-//                   <p className="text-muted-foreground text-sm mb-4">
-//                     {project.description}
-//                   </p>
-//                   <div className="flex space-x-3">
-//                     <a
-//                       href={project.demoUrl}
-//                       target="_blank"
-//                       className="text-foreground/80 hover:text-primary transition-colors duration-300"
-//                     >
-//                       <ExternalLink size={20} />
-//                     </a>
-//                     <a
-//                       href={project.githubUrl}
-//                       target="_blank"
-//                       className="text-foreground/80 hover:text-primary transition-colors duration-300"
-//                     >
-//                       <Github size={20} />
-//                     </a>
-//                   </div>
-//                 </div>
-//               </div>
-//             </SwiperSlide>
-//           ))}
-//         </Swiper>
-
-//         {/* Navigation Buttons */}
-//         <div className="flex items-center justify-center mt-12 gap-5">
-//           <button className="prev-btn bg-white w-12 h-12 flex items-center justify-center rounded-full hover:bg-neutral-200 transition-colors cursor-pointer">
-//             <ArrowRight className="rotate-180" size={24} />
-//           </button>
-//           <button className="next-btn bg-white w-12 h-12 flex items-center justify-center rounded-full hover:bg-neutral-200 transition-colors cursor-pointer">
-//             <ArrowRight size={24} />
-//           </button>
-//         </div>
-
-//         {/* Optional: Github Link */}
-//         <div className="text-center mt-12">
-//           <a
-//             className="cosmic-button w-fit flex items-center mx-auto gap-2"
-//             target="_blank"
-//             href="https://github.com/machadop1407"
-//           >
-//             Check My Github <ArrowRight size={16} />
-//           </a>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
