@@ -26,8 +26,10 @@ export const Navbar = () => {
   return (
     <nav
       className={cn(
-        // center horizontally with left-1/2 and translate-x
-        "fixed top-4 left-1/2 -translate-x-1/2 max-w-4xl w-[90%] rounded-full px-6 z-40 transition-all duration-300 shadow-xl py-3 bg-background/80 backdrop-blur-md border border-border",
+        "fixed left-1/2 -translate-x-1/2 w-[90%] max-w-4xl rounded-full px-6 z-40 transition-all duration-300 border border-border backdrop-blur-md",
+        isScrolled
+          ? "top-0 py-2 bg-background/90 shadow-lg"
+          : "top-2 py-4 bg-background/60 shadow-md"
       )}
     >
       <div className="flex items-center justify-between">
