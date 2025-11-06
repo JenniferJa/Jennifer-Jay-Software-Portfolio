@@ -29,7 +29,7 @@ const experience = [
     buttonText: "View Telemetry Dashboard",
     buttonLink: "https://telemetry-beta.calgarysolarcar.ca/battery",
     date: "September 2023 - September 2024",
-    icon: "work",
+    icon: "extracurricular",
   },
   {
     id: 3,
@@ -43,7 +43,7 @@ const experience = [
     buttonText: "View Organization's Website",
     buttonLink: "https://members.ewb.ca/",
     date: "May 2022 - July 2022",
-    icon: "work",
+    icon: "extracurricular",
   },
   {
     id: 4,
@@ -68,6 +68,13 @@ export const WorkExperienceSection = () => {
     setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
+  const [filter, setFilter] = useState("all");
+
+const filteredExperience = experience.filter((item) => {
+  if (filter === "all") return true;
+  return item.icon === filter; // "work" or "extracurricular"
+});
+
   return (
     <section id="workexperience" className="py-24">
       <div className="container mx-auto px-4 md:px-10">
@@ -80,7 +87,7 @@ export const WorkExperienceSection = () => {
         > My <span className="text-primary">Experience</span>
         </motion.h2>
 
-        <motion.p
+        {/* <motion.p
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -88,7 +95,38 @@ export const WorkExperienceSection = () => {
           className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto"
         >
           My professional journey in software development and engineering.
-        </motion.p>
+        </motion.p> */}
+        <motion.div initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }} className="flex justify-center gap-4 mb-10">
+          <button
+            onClick={() => setFilter("all")}
+            className={`px-4 py-2 rounded-full text-sm font-medium border transition-all z-10 ${
+              filter === "all" ? "bg-primary text-white border-primary" : "border-foreground/20 hover:border-primary"
+            }`}
+          >
+            All
+          </button>
+
+          <button
+            onClick={() => setFilter("work")}
+            className={`px-4 py-2 rounded-full text-sm font-medium border transition-all z-10 ${
+              filter === "work" ? "bg-primary text-white border-primary" : "border-foreground/20 hover:border-primary"
+            }`}
+          >
+            Work
+          </button>
+
+          <button
+            onClick={() => setFilter("extracurricular")}
+            className={`px-4 py-2 rounded-full text-sm font-medium border transition-all z-10 ${
+              filter === "extracurricular" ? "bg-primary text-white border-primary" : "border-foreground/20 hover:border-primary"
+            }`}
+          >
+            Extracurriculars
+          </button>
+</motion.div>
 
         <div className="relative w-full">
           {/* Center line */}
@@ -97,11 +135,11 @@ export const WorkExperienceSection = () => {
             whileInView={{ height: "100%" }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="absolute left-1/2 top-0 transform -translate-x-1/2 w-1 bg-primary hidden md:block"
+            className="absolute left-1/2 top-0 transform -translate-x-1/2 w-1 bg-primary hidden md:block pointer-events-none"
           ></motion.div>
 
-          <div className="space-y-24">
-            {experience.map((item, index) => {
+          <div className="space-y-0">
+            {filteredExperience.map((item, index) => {
               const isLeft = index % 2 === 0;
               const show = expanded[item.id];
 
@@ -136,7 +174,7 @@ export const WorkExperienceSection = () => {
 
                   {/* Card */}
                   <div
-                    className={`md:w-[45%] mt-12 md:mt-0 ${
+                    className={`md:w-[45%] mt-12 md:mt-0 z-10 ${
                       isLeft ? "md:pr-10" : "md:pl-10"
                     }`} onClick={() => toggleDescription(item.id)}
                   >

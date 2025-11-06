@@ -83,10 +83,9 @@ export const SkillsSection = () => {
               key={key}
               onClick={() => setActiveCategory(category)}
               className={cn(
-                "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
+                "px-4 py-2 rounded-full text-sm font-medium border transition-all capitalize",
                 activeCategory === category
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary/70 text-foreground hover:bg-secondary"
+                  ? "bg-primary text-white border-primary" : "border-foreground/20 hover:border-primary"
               )}
             >
               {category}
@@ -109,7 +108,6 @@ export const SkillsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: key * 0.03 }}
-              whileHover={{ scale: 1.03 }}
               className="bg-card p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-lg transition-shadow duration-300"
             >
               <div className="text-left mb-4">

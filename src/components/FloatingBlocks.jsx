@@ -33,7 +33,7 @@ export const FloatingBlocks = () => {
       {blocks.map((_, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-xl opacity-80"
+          className="absolute rounded-xl opacity-80 z-10"
           initial={{ scale: 0, y: 0 }}
           animate={{ 
             scale: 1, 
