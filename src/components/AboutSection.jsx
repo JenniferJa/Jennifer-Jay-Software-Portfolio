@@ -3,6 +3,8 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { Briefcase, Code, User } from "lucide-react";
+import Lanyard from './Lanyard'
+
 
 export const AboutSection = () => {
   // useEffect(() => {
@@ -82,13 +84,23 @@ export const AboutSection = () => {
   // }, []);
 
   return (
-    <section id="about" className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-5xl">
+    <div>
+    
+     <div className="absolute top-0 left-0 w-full h-full pointer-events-auto z-1">
+  <Lanyard 
+    position={[0, 0, 20]} 
+    gravity={[0, -40, 0]} 
+    className="w-full h-full"
+  />
+</div>
+    <section id="about" className="py-24 px-4 relative overflow-visible">
+     
+      <div className="container mx-auto max-w-5xl overflow-visible">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
           About <span className="text-primary">Me</span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center overflow-visible">
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold">Passionate Software Engineer</h3>
             <p className="text-muted-foreground">
@@ -113,12 +125,10 @@ export const AboutSection = () => {
             </div> */}
           </div>
 
-          <div
-            id="container3D"
-            className="w-full h-full min-h-[500px] flex justify-center items-center"
-          ></div>
+         {/* <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} className="w-full h-full max-h-[500px] flex justify-center items-center overflow-visible"/> */}
         </div>
       </div>
     </section>
+    </div>
   );
 };
