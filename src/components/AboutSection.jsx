@@ -1,104 +1,55 @@
-import { useEffect } from "react";
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { Briefcase, Code, User } from "lucide-react";
-import Lanyard from './Lanyard'
-
+import { useEffect, useState, useRef } from "react";
+import Lanyard from "./Lanyard";
+import { motion } from "framer-motion";
 
 export const AboutSection = () => {
-  // useEffect(() => {
-  //   const container = document.getElementById("container3D");
-  //   if (!container) return;
+  const [isVisible, setIsVisible] = useState(false);
+  const aboutRef = useRef(null);
 
-  //   // --- Scene setup ---
-  //   const scene = new THREE.Scene();
-  //   const camera = new THREE.PerspectiveCamera(
-  //     75,
-  //     container.clientWidth / container.clientHeight,
-  //     0.1,
-  //     1000
-  //   );
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        
+        if (entry.isIntersecting) {
+          setIsVisible(true); // only set true once
+        }
+      },
+      {
+        root: null,       // viewport
+        threshold: 0.1,   // trigger when 10% of section is visible
+      }
+    );
 
-  //   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-  //   renderer.setSize(container.clientWidth, container.clientHeight);
-  //   container.appendChild(renderer.domElement);
+    if (aboutRef.current) {
+      observer.observe(aboutRef.current);
+    }
 
-  //   // --- Lighting ---
-  //   const light = new THREE.DirectionalLight(0xffffff, 1);
-  //   light.position.set(2, 2, 5);
-  //   scene.add(light);
-
-  //   const ambientLight = new THREE.AmbientLight(0x404040, 1);
-  //   scene.add(ambientLight);
-
-  //   // --- Camera position ---
-  //   camera.position.set(0, 1, 5);
-
-  //   // --- Controls (allow zoom, rotate, pan) ---
-  //   const controls = new OrbitControls(camera, renderer.domElement);
-  //   controls.enableDamping = true;
-  //   controls.dampingFactor = 0.05;
-  //   controls.enableZoom = true; // ✅ allows zooming
-  //   controls.enablePan = true;
-  //   controls.rotateSpeed = 0.7;
-  //   controls.zoomSpeed = 0.8;
-
-  //   // --- Load model ---
-  //   const loader = new GLTFLoader();
-  //   loader.load(
-  //     "/models/mini_macbook_pro/scene.gltf", // ensure it's in /public/models
-  //     (gltf) => {
-  //       const object = gltf.scene;
-  //       scene.add(object);
-
-  //       object.position.set(0, -1, 0);
-  //       object.scale.set(1.5, 1.5, 1.5);
-
-  //       // --- Animation loop ---
-  //       const animate = () => {
-  //         requestAnimationFrame(animate);
-  //         controls.update(); // ✅ needed for OrbitControls
-  //         renderer.render(scene, camera);
-  //       };
-  //       animate();
-  //     },
-  //     undefined,
-  //     (error) => console.error("Error loading model:", error)
-  //   );
-
-  //   // --- Handle window resize ---
-  //   const handleResize = () => {
-  //     camera.aspect = container.clientWidth / container.clientHeight;
-  //     camera.updateProjectionMatrix();
-  //     renderer.setSize(container.clientWidth, container.clientHeight);
-  //   };
-  //   window.addEventListener("resize", handleResize);
-
-  //   // --- Cleanup on unmount ---
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //     renderer.dispose();
-  //     container.innerHTML = "";
-  //   };
-  // }, []);
-
+    return () => {
+      if (aboutRef.current) {
+        observer.unobserve(aboutRef.current);
+      }
+    };
+  }, []);
   return (
     <div>
-    
+    {isVisible && (
      <div className="absolute top-0 left-0 w-full h-full pointer-events-auto z-1">
   <Lanyard 
     position={[0, 0, 20]} 
     gravity={[0, -40, 0]} 
     className="w-full h-full"
   />
-</div>
-    <section id="about" className="py-24 px-4 relative overflow-visible">
+</div> )}
+    <section id="about" ref={aboutRef} className="py-24 px-4 relative overflow-visible">
      
       <div className="container mx-auto max-w-5xl overflow-visible">
         
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center overflow-visible">
+        <motion.div initial={{ x: "-100%", opacity: 0 }}
+        animate={isVisible ? { x: 0, opacity: 1 } : {}}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true}}
+        className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center overflow-visible">
           
           <div className="space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
@@ -128,7 +79,7 @@ export const AboutSection = () => {
           </div>
 
          {/* <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} className="w-full h-full max-h-[500px] flex justify-center items-center overflow-visible"/> */}
-        </div>
+        </motion.div>
       </div>
     </section>
     </div>
